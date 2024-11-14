@@ -45,7 +45,7 @@ function ConversationsApp() {
       </ul>
 
       {selectedConversation && (
-        <Modal show={showModal} onHide={handleCloseModal} centered>
+        <Modal show={showModal} onHide={handleCloseModal} centered dialogClassName="modal-dialog">
           <Modal.Header className="modal-header">
             <Modal.Title className="modal-title">Conversation Details</Modal.Title>
           </Modal.Header>
@@ -59,7 +59,7 @@ function ConversationsApp() {
               </div>
             ))}
           </Modal.Body>
-          <Modal.Footer>
+          <Modal.Footer className="modal-footer">
             <button onClick={handleCloseModal} className="closeButton">Close</button>
           </Modal.Footer>
         </Modal>
