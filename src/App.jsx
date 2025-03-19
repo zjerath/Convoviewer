@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import './App.css'; // Importing the CSS file
+import { database, auth } from './firebase';
+import { ref, push, query, orderByChild, equalTo, get } from 'firebase/database';
+import { onAuthStateChanged } from "firebase/auth";
 
 // Sample component to render conversations
 function ConversationsApp() {
@@ -10,17 +13,40 @@ function ConversationsApp() {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    // Load JSON data (replace with actual fetch or import if using a file)
-    fetch('../data/walkthroughgpt-default-rtdb-export.json')
-      .then(response => response.json())
-      .then(data => {
-        const conversationList = Object.entries(data.conversations).map(([id, convo]) => ({
-          id,
-          ...convo,
-          conversation: JSON.parse(convo.conversation),
-        }));
-        setConversations(conversationList);
-      });
+    const fetchConversations = async (user) => {
+      if (!user) {
+        console.error("User is not authenticated");
+        return;
+      }
+      try {
+        const dbRef = ref(database, "conversations");
+        const snapshot = await get(dbRef);
+  
+        if (snapshot.exists()) {
+          const data = snapshot.val();
+          const conversationList = Object.entries(data).map(([id, convo]) => ({
+            id,
+            ...convo,
+            conversation: JSON.parse(convo.conversation),
+          }));
+          setConversations(conversationList);
+        } else {
+          console.log("No data available");
+        }
+      } catch (error) {
+        console.error("Error fetching conversations:", error);
+      }
+    };
+  
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        fetchConversations(user);
+      } else {
+        console.error("No user authenticated.");
+      }
+    });
+  
+    return () => unsubscribe();
   }, []);
 
   const handleOpenModal = (conversation) => {
