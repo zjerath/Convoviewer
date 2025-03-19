@@ -78,7 +78,7 @@ function ConversationsApp() {
           <Modal.Body className="modal-body">
             {selectedConversation.conversation.map((message, index) => (
               <div key={index} className={`message ${message.role}-message`}>
-                <div className="message-role">{message.role === 'user' ? 'User' : 'Bot'}:</div>
+                <div className="message-role">{message.role === 'user' ? 'User' : 'COPA'}:</div>
                 <div className="message-content">{message.content.split('\n').map((line, i) => (
                   <React.Fragment key={i}>{line}<br /></React.Fragment>
                 ))}</div>
