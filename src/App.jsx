@@ -65,7 +65,12 @@ function ConversationsApp() {
       <ul className="conversation-list">
         {conversations.map((convo) => (
           <li key={convo.id} className="conversation-item" onClick={() => handleOpenModal(convo)}>
-            <span className="conversation-timestamp">{new Date(convo.timestamp).toLocaleString()}</span>
+            <span className="conversation-timestamp">
+              {convo.conversation.length > 0 ? convo.conversation[0].content.slice(0, 20) + '...' : 'No content'}
+            </span>
+            <span className="conversation-timestamp">
+              {new Date(convo.timestamp).toLocaleString()}
+            </span>
           </li>
         ))}
       </ul>
