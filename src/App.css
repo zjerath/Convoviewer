@@ -26,6 +26,8 @@
   cursor: pointer;
   transition: background-color 0.3s;
   border: 1px solid #dee2e6;
+  display: flex;
+  justify-content: space-between;
 }
 
 .conversation-item:hover {
@@ -35,6 +37,10 @@
 .conversation-timestamp {
   font-size: 0.9em;
   color: #666;
+}
+
+.conversation-text {
+  font-size: 0.9em;
 }
 
 .modal-dialog {
