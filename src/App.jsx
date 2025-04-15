@@ -24,11 +24,30 @@ function ConversationsApp() {
   
         if (snapshot.exists()) {
           const data = snapshot.val();
-          const conversationList = Object.entries(data).map(([id, convo]) => ({
+          const conversationList = Object.entries(data).map(([id, convo]) => {
+            return {
             id,
             ...convo,
             conversation: JSON.parse(convo.conversation),
-          }));
+            timestamp:  convo.timestamp
+          }});
+
+          // Ensure timestamp is a valid number (convert ISO string to Unix timestamp)
+          conversationList.forEach(convo => {
+            if (typeof convo.timestamp === 'string') {
+              // Convert ISO string to Unix timestamp (milliseconds)
+              const parsedTimestamp = new Date(convo.timestamp).getTime();
+              if (!isNaN(parsedTimestamp)) {
+                convo.timestamp = parsedTimestamp;
+              } else {
+                console.error("Invalid timestamp:", convo.timestamp);
+              }
+            }
+          });
+
+          // Sort by timestamp (most recent first)
+          conversationList.sort((a, b) => b.timestamp - a.timestamp)
+
           setConversations(conversationList);
         } else {
           console.log("No data available");
