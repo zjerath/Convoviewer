@@ -1,4 +1,4 @@
-# React Vitest Template
+# Convoviewer for COPA
 
 A starter template for building React apps with Vite. Includes Vitest for unit testing and
 a hefty .gitignore file.
