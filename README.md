@@ -14,54 +14,41 @@ Once complete, the following steps are necessary to support viewing conversation
     - To integrate the database with Firebase, paste the corresponding Firebase config for COPA into src/firebase.js.
     - The app can then be run locally using the instructions below, and conversations will be displayed in a more navigatable and readable format than on Firebase.
 
-To run the app locally, run:
+To run the app locally after setting up Firebase, do the following:
+
+1. Navigate to the directory where you want the project:
+
+```
+cd path/to/your/projects
+```
+
+2. Clone the repository:
+
+```
+git clone https://github.com/zjerath/Convoviewer.git
+```
+
+3. Follow steps for pasting the correct Firebase config in the instructions above if not already completed.
+
+4. Navigate into the project:
+
+```
+cd Convoviewer
+```
+
+5. Install dependencies:
 
 ```
 npm install
 ```
 
-```
-npm run start
-```
-
-Further instructions are below under Usage. 
-
-## Contact
-
-For any questions, please contact:
-
-Zain Jerath - zainjerath@gmail.com
-
-Chris Riesbeck - c-riesbeck@northwestern.edu.
-
-## Usage
+6. Then:
 
 ```
-mkdir your-app-name
-cd your-app-name
-npx degit criesbeck/react-vitest
-npm install
-```
-If the third step hangs after printing ``> cloned criesbeck/react-vitest#HEAD``, 
-just control-C to exit then run ``npm install``.
-
-## Test
-
-Verify that the initial app works. Run
-
-```
-npm start
+npm run dev
 ```
 
-and open the URL displayed.
-
-Verify that the unit tests work with
-
-```
-npm test
-```
-
-Two tests should run and pass. 
+Further scripts are provided below.
 
 ## Scripts
 
@@ -76,44 +63,10 @@ Two tests should run and pass.
 | npm test         | Starts a Jest-like test loop                        |
 | npm run coverage | Runs the tests, displays code coverage results      |
 
+## Contact
 
-## Git
+For any questions, please contact:
 
-If everything is working, set up [your local and remote repositories](https://docs.github.com/en/get-started/importing-your-projects-to-github/importing-source-code-to-github/adding-locally-hosted-code-to-github#adding-a-local-repository-to-github-using-git).
+Zain Jerath - zainjerath@gmail.com
 
-## Folder Structure
-
-```
-your-app-name
-├── node_modules
-├── public
-│   ├── favicon.svg
-│   └── robots.txt
-└── src
-    ├── App.css
-    ├── App.jsx
-    ├── index.css
-    ├── index.jsx
-    └── logo.svg
-├── .gitignore
-├── index.html
-├── package.json
-├── README.md
-├── vite.config.js
-```
-
-## Credits
-
-React-Vitest built and maintained by [Chris Riesbeck](https://github.com/criesbeck).
-
-Inspired by [SafdarJamal/vite-template-react](https://github.com/SafdarJamal/vite-template-react).
-Expanded to include Vitest and some sample tests.
-
-Thanks to Rich Harris for [degit](https://www.npmjs.com/package/degit).
-
-Gitignore file created with [the Toptal tool](https://www.toptal.com/developers/gitignore/api/react,firebase,visualstudiocode,macos,windows).
-
-
-## License
-
-This project is licensed under the terms of the [MIT license](./LICENSE).
+Chris Riesbeck - c-riesbeck@northwestern.edu.
